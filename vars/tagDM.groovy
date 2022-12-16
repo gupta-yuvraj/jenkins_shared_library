@@ -28,7 +28,7 @@ def call() {
     } catch (Exception e) {
       println("Exception during loading -> ${e}")
       println("dm loading failed, retrying..")
-      println("retries left -> ${retries}")
+      println("retries left -> ${retries - 1}")
     }
   }
   sh "docker rmi domain_manager"
