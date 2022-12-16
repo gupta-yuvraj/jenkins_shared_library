@@ -2,6 +2,6 @@
 
 def call(){
     def runCmd = "sleep 10".execute()
-    // runCmd.waitFor()
+    runCmd.waitFor()
     println "command exit code " + runCmd.exitValue()
 }
