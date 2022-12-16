@@ -26,10 +26,11 @@ def call() {
         break
       }
     } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
-      println("Exception during loading -> ${e}")
+      // this exception raised when build is tried to be aborted
       println("Aborting loading..")
       break
     } catch (Exception e) {
+      // this will handle rest of the interruptions / errors faced during loading
       println("Exception during loading -> ${e}")
       retries--
       println("dm loading failed, retrying..")
