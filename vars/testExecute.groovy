@@ -10,6 +10,7 @@ def call(){
    for (int i = 0; i < cmds.size(); i++) {
         println cmds[i]
         def runCmd = cmds[i].execute()
+        runCmd.consumeProcessOutput()
         runCmd.waitFor()
         def exitCode = runCmd.exitValue()
         println "command exit code " + exitCode
