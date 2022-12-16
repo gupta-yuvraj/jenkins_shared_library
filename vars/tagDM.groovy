@@ -3,8 +3,9 @@ def call() {
   sh "docker login -u calm -p eye2eye registry.calm.nutanix.com:5001"
   sh "cd /tmp/containers && wget http://endor.dyn.nutanix.com/GoldImages/domain_manager/docker/master/domain_manager.tar.xz"
   while (true) {
-      def loadCmd = "docker load -i /tmp/containers/domain_manager.tar.xz".execute([], tmpDir)
-      loadCmd.consumeProcessOutput()
+      def sout = new StringBuilder(), serr = new StringBuilder()
+      def loadCmd = "docker load -i /tmp/containers/domain_manager.tar.xz".execute()
+      loadCmd.consumeProcessOutput(sout, serr)
       loadCmd.waitFor()
       exitCode = loadCmd.exitValue()
       if (exitCode == 0) {
