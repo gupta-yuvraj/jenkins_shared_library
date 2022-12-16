@@ -25,11 +25,11 @@ def call() {
         println("dm loading successful")
         break
       }
-    } catch (FlowInterruptedException e) {
+    } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
       println("Exception during loading -> ${e}")
       println("Aborting loading..")
       break
-    } catch (AbortException e) {
+    } catch (Exception e) {
       println("Exception during loading -> ${e}")
       retries--
       println("dm loading failed, retrying..")
