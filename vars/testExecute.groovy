@@ -2,9 +2,9 @@
 
 def call(){
     List<String> cmds = [
-        "date && false",
-        "uptime && false",
-        "echo hello",
+        "echo hello && false",
+        "echo world && false",
+        "echo bye",
         "ls -l && false"
     ]
    for (int i = 0; i < cmds.size(); i++)
