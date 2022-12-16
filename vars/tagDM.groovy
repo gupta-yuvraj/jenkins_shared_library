@@ -16,11 +16,11 @@ def call() {
   //       println "dm loading failed, retrying..."
   //     }
   // }
-  while (true) {
+  def retries = 5
+  while (retries > 0) {
     try {
       sh "docker load -i /tmp/containers/domain_manager.tar.xz"
       def exitCode = sh(script: "echo \$?", returnStdout: true).trim()
-      println "exitCode -> ${exitCode}" 
       if (exitCode == '0') {
         println("dm loading successful")
         break
@@ -28,6 +28,7 @@ def call() {
     } catch (Exception e) {
       println("Exception during loading -> ${e}")
       println("dm loading failed, retrying..")
+      println("retries left -> ${retries}")
     }
   }
   sh "docker rmi domain_manager"
