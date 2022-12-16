@@ -8,6 +8,7 @@ def call(){
         "ls -l && false"
     ]
    for (int i = 0; i < cmds.size(); i++) {
+        println cmds[i]
         def runCmd = cmds[i].execute()
         runCmd.waitFor()
         def exitCode = runCmd.exitValue()
