@@ -7,7 +7,7 @@ def call(){
         "echo bye",
         "ls -l && false"
     ]
-   for (int i = 0; i < cmds.size(); i++)
+   for (int i = 0; i < cmds.size(); i++) {
         def runCmd = cmds[i].execute()
         runCmd.waitFor()
         def exitCode = runCmd.exitValue()
@@ -16,4 +16,5 @@ def call(){
             println "exit code is 0, exiting loop"
             break
         }
+   }
 }
