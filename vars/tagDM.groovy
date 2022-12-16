@@ -17,15 +17,19 @@ def call() {
   //     }
   // }
   while (true) {
-    sh "docker load -i /tmp/containers/domain_manager.tar.xz"
-    def exitCode = sh(script: "echo \$?", returnStdout: true).trim()
-    println "exitCode -> ${exitCode}" 
-    if (exitCode == '0') {
-      println "dm loading successful"
-      break
-    }
-    else {
-      println "dm loading failed, retrying.."
+    try {
+      sh "docker load -i /tmp/containers/domain_manager.tar.xz"
+      def exitCode = sh(script: "echo \$?", returnStdout: true).trim()
+      println "exitCode -> ${exitCode}" 
+      if (exitCode == '0') {
+        println("dm loading successful")
+        break
+      }
+      else {
+        println("dm loading failed, retrying..")
+      }
+    } catch (Exception e) {
+      println(e)
     }
   }
   sh "docker rmi domain_manager"
