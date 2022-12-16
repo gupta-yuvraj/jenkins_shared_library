@@ -18,7 +18,7 @@ def call() {
   // }
   while (true) {
     sh "docker load -i /tmp/containers/domain_manager.tar.xz"
-    def exitCode = sh "echo $?"
+    def exitCode = sh "echo \$?"
     println "exitCode -> ${exitCode}" 
     if (exitCode == '0') {
       println "dm loading successful"
