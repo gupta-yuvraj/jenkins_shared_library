@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 def call(){
-    String cmds = [
+    List<String> cmds = [
         "date && false",
         "uptime && false",
         "echo hello",
