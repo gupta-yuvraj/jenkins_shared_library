@@ -25,10 +25,15 @@ def call() {
         println("dm loading successful")
         break
       }
-    } catch (Exception e) {
+    } catch (FlowInterruptedException e) {
       println("Exception during loading -> ${e}")
+      println("Aborting loading..")
+      break
+    } catch (AbortException e) {
+      println("Exception during loading -> ${e}")
+      retries--
       println("dm loading failed, retrying..")
-      println("retries left -> ${retries - 1}")
+      println("Retries left -> ${retries}")
     }
   }
   sh "docker rmi domain_manager"
